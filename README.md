@@ -1,2 +1,0 @@
-# QuantifiedSelfApp
-MyFirstWebApp
