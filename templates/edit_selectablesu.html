@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/bootstrap-grid.css" />
+    <style>
+      body
+         {background-color:rgba(52, 247, 214, 0.359)}
+      h1.italic
+        {font-style:italic}
+      p.italic
+        {font-style:italic
+        }
+    </style>
+    <title>Edit Selectables</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container-fluid">
+         <h1 class="italic" style="color:#91eff6;">Quantified self <br><a class="btn btn-lg" style="color:#91eff6;" href="/user/{{uname}}/home">Hello, {{uname}}</a></h1>
+         <br>
+         <p class="italic" style="color:#91eff6;">Track and measure yourself!<br><br><a href="/user/logout" class="btn btn-dark" style="color:#91eff6">Log out</a></p>  
+      </div>
+    </nav>  
+
+    <div id="main" class="col-md-8">
+      <div class="row-g3" style="padding-top: 100px; padding-right: 100px;padding-bottom: 100px; padding-left: 100px; ">
+          <h1>Create Choices for {{tracker.trname}}</h1>
+            {% if error %}
+                <p class=error style="color: red;"><strong> Error: </strong> {{error}} </p>
+            {% endif %}
+            <form action="/user/{{uname}}/{{trid}}/editselectables" method="POST" id="tracker-selectables-form">
+                <div class="row">
+                  <div class="mb-3">
+                    <label for="trackerName" class="form-label">Choices</label>
+                    <input type="text" class="form-control" id="trackerChoices" name="trackerChoices" style="border: 1px solid black;">
+                    <div class="form-text"> Enter choices for {{tracker.trname}} as comma seperated values </div>
+                  </div>
+    
+                  <div class="col-auto mb-3">
+                   <input type="submit" class="btn btn-primary mb-3" value="Edit" style="border: 0.5px solid #10222E; background-color: #18A999; color: white;">
+                  </div>
+                </div>
+            </form>
+      </div>
+    </div>
+
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/bootstrap.bundle.js"></script>
+</body>
+</html>

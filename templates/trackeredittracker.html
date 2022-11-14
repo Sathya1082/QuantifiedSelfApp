@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head> 
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+      body
+         {background-color:rgba(52, 247, 214, 0.359)}
+      h1.italic
+        {font-style:italic}
+      p.italic
+        {font-style:italic
+        }
+    </style>
+    <title>Edit Tracker</title>
+  </head>
+  
+<body >
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+           <h1 class="italic" style="color:#91eff6;">Quantified self <br><a class="btn btn-lg" style="color:#91eff6;" href="/user/{{uname}}/home">Hello, {{uname}}</a></h1>
+           <br>
+           <p class="italic" style="color:#91eff6;">Track and measure yourself!<br><br><a href="/user/logout" class="btn btn-dark" style="color:#91eff6">Log out</a></p>  
+        </div>
+     </nav>
+    <div id="main" class="col-md-8">
+      <div class="container-fluid" style="padding: 30px">
+        <div class="row" style="border: 1px solid #10222E; border-radius: 5px; padding: 10px;">
+            <h1>Edit Tracker</h1>
+            {% if error %}
+                <p class=error style="color: red;"><strong> Error: </strong> {{error}} </p>
+            {% endif %}
+            <form action="/user/{{uname}}/tracker_info/{{trid}}/edit" method="POST" id="tracker-edit-form">
+                <div class="row">
+                  <div class="mb-3">
+                    <label for="trackerName" class="form-label">Tracker Name</label>
+                    <input type="text" class="form-control" id="trackerName" name="trackerName" style="border: 1px solid black;" placeholder="{{tracker.trname}}">
+                  </div>
+                  <div class="mb-3">
+                    <label for="trackerType" class="form-label">Tracker Type</label>
+                    <input type="text" class="form-control" id="trackerType" name="trackerType" style="border: 1px solid black;" placeholder="{{tracker.trtype}}" disabled readonly>
+                  </div>
+                  {% if tracker.trtype == "Multiple Choice" %}
+                  <div class="mb-3">
+                    <label for="trackerChoices" class="form-label">Tracker Choices</label>
+                    <input type="text" class="form-control" id="trackerType" name="trackerType" style="border: 1px solid black;" placeholder="{{selectable_values.choices}}" disabled readonly>
+                    <div class="form-text"><a href="/user/{{uname}}/tracker_info/{{trid}}/editselectables">Edit Choices(All previous logs will be deleted)</a></div>
+                  {% endif %}
+                  </div>
+                  <div class="mb-3">
+                    <label for="trackerDesc" class="form-label">Tracker Description</label>
+                    <input type="text" class="form-control" id="trackerDesc" name="trackerDesc" style="border: 1px solid black;" placeholder="{{tracker.trdesc}}">
+                  </div>
+                  <div class="col-auto mb-3">
+                    <input type="submit" class="btn btn-primary mb-3" value="Edit" style="border: 0.5px solid #10222E; background-color: #18A999; color: white;">
+                  </div>            
+        </div>
+      </div>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
